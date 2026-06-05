@@ -1,0 +1,65 @@
+.shell {
+  min-height: 100vh;
+  background: var(--color-cream);
+  display: flex;
+  flex-direction: column;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-4) var(--sp-8);
+  border-bottom: 2px solid var(--color-navy);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body);
+}
+
+.mark {
+  width: 30px;
+  height: 30px;
+  background: var(--color-cyan);
+  color: var(--color-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body);
+  border-radius: var(--r-sm);
+}
+
+.lang {
+  display: flex;
+  gap: var(--sp-4);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.langItem {
+  padding: 0;
+  color: var(--color-black);
+}
+
+.langActive {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+}
+
+@media (max-width: 599px) {
+  .bar {
+    padding: var(--sp-3) var(--sp-4);
+  }
+}
