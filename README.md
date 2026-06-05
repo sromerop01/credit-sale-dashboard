@@ -16,8 +16,8 @@ Dashboard React + TypeScript para gestión de préstamos, rutas de cobro y clien
 
 ```bash
 cd credit-sale-dashboard
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Abre http://localhost:5173
@@ -30,9 +30,9 @@ Rutas disponibles:
 Otros scripts:
 
 ```bash
-npm run build       # Build de producción a dist/
-npm run preview     # Sirve el build localmente
-npm run typecheck   # Verifica tipos sin emitir
+pnpm build        # Build de producción a dist/
+pnpm preview      # Sirve el build localmente
+pnpm typecheck    # Verifica tipos sin emitir
 ```
 
 ## Estructura
