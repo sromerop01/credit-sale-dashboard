@@ -1,4 +1,4 @@
-import type { Route } from '../../types/types'
+import type { Route } from '../../types'
 import styles from './RouteCard.module.css'
 
 interface RouteCardProps {
@@ -38,7 +38,7 @@ export function RouteCard({ route, onClick }: RouteCardProps) {
           <div>{formatCurrency(route.collectedAmount)}</div>
           <div>{arrearsLabel(route.arrearsCount)}</div>
         </div>
-        <button onClick={onClick} className={styles.link}>
+        <button type="button" onClick={onClick} className={styles.link}>
           {route.collectorName ? 'Ver ruta' : 'Asignar cobrador'}
         </button>
       </div>

@@ -1,0 +1,62 @@
+.avatar {
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--fw-bold);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.sm {
+  width: 28px;
+  height: 28px;
+  font-size: 10px;
+}
+
+.md {
+  width: 36px;
+  height: 36px;
+  font-size: var(--fs-xs);
+}
+
+.lg {
+  width: 56px;
+  height: 56px;
+  font-size: 18px;
+}
+
+.cyan {
+  background: var(--color-cyan);
+  color: var(--color-black);
+}
+
+.royal {
+  background: var(--color-royal);
+  color: var(--color-white);
+}
+
+.green {
+  background: var(--color-green);
+  color: var(--color-black);
+}
+
+.rust {
+  background: var(--color-rust);
+  color: var(--color-white);
+}
+
+.mint {
+  background: var(--color-mint);
+  color: var(--color-black);
+}
+
+.navy {
+  background: var(--color-navy);
+  color: var(--color-cream);
+}
+
+.mostaza {
+  background: var(--color-mostaza);
+  color: var(--color-white);
+}

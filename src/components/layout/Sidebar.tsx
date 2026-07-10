@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard,
   Wallet,
@@ -8,8 +8,10 @@ import {
   UserCircle2,
   Settings,
   X,
+  LogOut,
   type LucideIcon,
 } from 'lucide-react'
+import { useAuth } from '../../hooks/useAuth'
 import styles from './Sidebar.module.css'
 
 interface NavItem {
@@ -60,9 +62,17 @@ const groups: NavGroup[] = [
 ]
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const { logout } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    navigate('/login', { replace: true })
+  }
+
   return (
     <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
-      <button className={styles.closeBtn} onClick={onClose} aria-label="Cerrar menú">
+      <button type="button" className={styles.closeBtn} onClick={onClose} aria-label="Cerrar menú">
         <X size={16} />
       </button>
       <div className={styles.logo}>
@@ -112,6 +122,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className={styles.userName}>Santiago R.</div>
           <div className={styles.userRole}>Administrador</div>
         </div>
+        <button type="button" className={styles.logoutBtn} onClick={handleLogout} title="Cerrar sesión">
+          <LogOut size={14} />
+        </button>
       </div>
     </aside>
   )

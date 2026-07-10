@@ -31,15 +31,11 @@ export interface LoginPayload {
   password: string
 }
 
-export interface LoginResponse {
-  token: string
-}
-
 export interface AuthContextType {
-  token: string | null
-  login: (token: string) => void
-  logout: () => void
   isAuthenticated: boolean
+  isLoading: boolean
+  login: () => void
+  logout: () => Promise<void>
 }
 
 export type LoginInputs = {

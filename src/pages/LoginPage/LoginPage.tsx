@@ -1,24 +1,40 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Button } from '../../../dashboad-react-laravel/src/components/ui/Button'
-import { Input } from '../../../dashboad-react-laravel/src/components/ui/Input'
-import styles from '../../../dashboad-react-laravel/src/pages/LoginPage.module.css'
+import { useNavigate, Navigate } from 'react-router-dom'
+import { Button } from '../../components/ui/Button'
+import { Input } from '../../components/ui/Input'
+import { authApi } from '../../api/auth'
+import { useAuth } from '../../hooks/useAuth'
+import styles from './LoginPage.module.css'
 
 export function LoginPage() {
   const navigate = useNavigate()
+  const { login, isAuthenticated, isLoading } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [magicEmail, setMagicEmail] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleLogin = (e: React.FormEvent) => {
+  if (isLoading) return null
+  if (isAuthenticated) return <Navigate to="/rutas" replace />
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: conectar con la API real de auth
-    navigate('/rutas')
+    setError(null)
+    setLoading(true)
+    try {
+      await authApi.login({ email, password })
+      login()
+      navigate('/rutas', { replace: true })
+    } catch {
+      setError('Credenciales incorrectas. Verifica tu correo y contraseña.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleMagicLink = (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: enviar enlace por correo
     alert(`Enviaríamos un enlace de acceso a ${magicEmail}`)
   }
 
@@ -26,11 +42,8 @@ export function LoginPage() {
     <div className={styles.page}>
       <section className={styles.hero}>
         <h1 className={styles.title}>
-          Bienvenido<br />de nuevo
+          Bienvenido de nuevo
         </h1>
-        <p className={styles.subtitle}>
-          Credit Sale · Plataforma de cartera, rutas y cobranza
-        </p>
         <a href="#solicitar" className={styles.requestAccess}>
           Solicitar acceso
         </a>
@@ -54,12 +67,13 @@ export function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && <p className={styles.error}>{error}</p>}
           <div className={styles.row}>
             <a href="#recover" className={styles.forgot}>
               ¿Has olvidado tu contraseña?
             </a>
-            <Button type="submit" variant="ghost">
-              Iniciar sesión
+            <Button type="submit" variant="ghost" disabled={loading}>
+              {loading ? 'Entrando…' : 'Iniciar sesión'}
             </Button>
           </div>
         </form>

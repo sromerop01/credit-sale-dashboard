@@ -1,0 +1,40 @@
+.field {
+  border: 1px solid var(--color-black);
+  padding: 6px 14px 10px;
+  border-radius: var(--r-0);
+  background: transparent;
+  margin: 0;
+  min-width: 0;
+}
+
+.field:focus-within {
+  background: var(--color-cream-soft);
+}
+
+.legend {
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  padding: 0 var(--sp-1);
+  margin-left: var(--sp-1);
+  color: var(--color-black);
+}
+
+.legend label {
+  cursor: pointer;
+}
+
+.input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: var(--fs-body);
+  padding: var(--sp-1) 0;
+  background: transparent;
+  color: var(--color-black);
+  font-family: inherit;
+}
+
+.input::placeholder {
+  color: var(--color-black);
+  opacity: 0.4;
+}

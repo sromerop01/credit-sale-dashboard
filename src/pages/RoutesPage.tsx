@@ -1,13 +1,15 @@
-import { RouteCard } from '../components/modules/RouteCard'
-import { Button } from '../../../dashboad-react-laravel/src/components/ui/Button'
+import { RouteCard } from '../components/features/RouteCard'
+import { Button } from '../components/ui/Button'
 import { mockRoutes } from '../data/mock'
 import styles from './RoutesPage.module.css'
 
 export function RoutesPage() {
   const activeCount = mockRoutes.filter((r) => r.collectorName !== null).length
-  const collectorCount = new Set(
-    mockRoutes.filter((r) => r.collectorName).map((r) => r.collectorName)
-  ).size
+  const collectorNames = new Set<string>()
+  for (const r of mockRoutes) {
+    if (r.collectorName) collectorNames.add(r.collectorName)
+  }
+  const collectorCount = collectorNames.size
 
   return (
     <div className={styles.page}>

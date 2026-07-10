@@ -1,4 +1,4 @@
-import type { Route, Client } from '../types/types'
+import type { Route, Client } from '../types'
 
 export const mockRoutes: Route[] = [
   {

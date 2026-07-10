@@ -10,12 +10,18 @@ export function AppShell() {
   return (
     <div className={styles.shell}>
       {sidebarOpen && (
-        <div className={styles.backdrop} onClick={() => setSidebarOpen(false)} />
+        <button
+          type="button"
+          className={styles.backdrop}
+          aria-label="Cerrar menú"
+          onClick={() => setSidebarOpen(false)}
+        />
       )}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className={styles.body}>
         <header className={styles.topbar}>
           <button
+            type="button"
             className={styles.menuBtn}
             onClick={() => setSidebarOpen(true)}
             aria-label="Abrir menú"

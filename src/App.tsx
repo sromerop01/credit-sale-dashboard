@@ -1,9 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { AppShell } from './components/layout/AppShell'
 import { AuthShell } from './components/layout/AuthShell'
+import { ProtectedRoute } from './contexts/ProtectedRoute'
 import { RoutesPage } from './pages/RoutesPage'
-import { ClientsPage } from './pages/ClientsPage'
-import { LoginPage } from './pages/LoginPage'
+import { ClientsPage } from './pages/ClientsPage/ClientsPage'
+import { LoginPage } from './pages/LoginPage/LoginPage'
 
 export default function App() {
   return (
@@ -13,14 +14,14 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
       </Route>
 
-      {/* Rutas internas (con sidebar) */}
-      <Route element={<AppShell />}>
+      {/* Rutas internas — requieren autenticación */}
+      <Route element={<ProtectedRoute><AppShell /></ProtectedRoute>}>
         <Route path="/" element={<Navigate to="/rutas" replace />} />
         <Route path="/rutas" element={<RoutesPage />} />
         <Route path="/clientes" element={<ClientsPage />} />
       </Route>
 
-      <Route path="*" element={<Navigate to="/rutas" replace />} />
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   )
 }

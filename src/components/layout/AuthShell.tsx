@@ -9,12 +9,12 @@ export function AuthShell() {
           <div className={styles.mark}>C</div>
           <span>Credit Sale</span>
         </div>
-        <div className={styles.lang}>
+        {/* <div className={styles.lang}>
           <button className={styles.langItem}>English</button>
           <button className={`${styles.langItem} ${styles.langActive}`}>
             Español
           </button>
-        </div>
+        </div> */}
       </header>
 
       <main className={styles.main}>

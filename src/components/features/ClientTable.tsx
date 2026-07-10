@@ -1,6 +1,6 @@
-import type { Client } from '../../types/types'
-import { Avatar } from '../../../../dashboad-react-laravel/src/components/ui/Avatar'
-import { Badge } from '../../../../dashboad-react-laravel/src/components/ui/Badge'
+import type { Client } from '../../types'
+import { Avatar } from '../ui/Avatar'
+import { Badge } from '../ui/Badge'
 import styles from './ClientTable.module.css'
 
 interface ClientTableProps {

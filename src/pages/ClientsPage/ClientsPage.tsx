@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
-import { ClientTable } from '../components/modules/ClientTable'
-import { Button } from '../../../dashboad-react-laravel/src/components/ui/Button'
-import { mockClients, mockRoutes } from '../data/mock'
+import { ClientTable } from '../../components/features/ClientTable'
+import { Button } from '../../components/ui/Button'
+import { mockClients, mockRoutes } from '../../data/mock'
 import styles from './ClientsPage.module.css'
 
 export function ClientsPage() {
@@ -39,6 +39,7 @@ export function ClientsPage() {
           type="text"
           className={styles.search}
           placeholder="Buscar por nombre, cédula o teléfono…"
+          aria-label="Buscar clientes"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

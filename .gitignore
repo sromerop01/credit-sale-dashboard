@@ -12,3 +12,4 @@ vite.config.ts.timestamp*
 .idea
 .vscode/*
 !.vscode/extensions.json
+.claude/settings.local.json
