@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
-import { authApi } from '../../api/auth'
 import { useAuth } from '../../hooks/useAuth'
 import styles from './LoginPage.module.css'
 
@@ -23,8 +22,7 @@ export function LoginPage() {
     setError(null)
     setLoading(true)
     try {
-      await authApi.login({ email, password })
-      login()
+      await login({ email, password })
       navigate('/rutas', { replace: true })
     } catch {
       setError('Credenciales incorrectas. Verifica tu correo y contraseña.')

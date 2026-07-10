@@ -34,7 +34,8 @@ export interface LoginPayload {
 export interface AuthContextType {
   isAuthenticated: boolean
   isLoading: boolean
-  login: () => void
+  authError: 'server' | 'network' | null
+  login: (payload: LoginPayload) => Promise<void>
   logout: () => Promise<void>
 }
 
