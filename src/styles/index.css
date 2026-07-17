@@ -1,0 +1,58 @@
+/*
+  Credit Sale - Tailwind v4 (config CSS-first)
+  Paleta inspirada en Acumen Academy. Cambia cualquier token
+  aqui y se propaga a toda la app (bg-cream, text-navy, etc.).
+*/
+
+@import 'tailwindcss';
+
+@theme {
+  /* === Paleta === */
+  --color-cream: #f7f2ea;
+  --color-cream-soft: #faf6ec;
+  --color-navy: #0e3a4a;
+  --color-navy-light: #1b5063;
+
+  /* Acentos calidos */
+  --color-rust: #c8552b;
+  --color-mostaza: #a8831f;
+
+  /* Acentos saturados */
+  --color-cyan: #0aa9c9;
+  --color-royal: #2247dc;
+  --color-green: #19a957;
+  --color-mint: #b6e8dc;
+
+  /* === Tipografia === */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+
+  /* Titular hero (56px / lh 1 / -0.02em) -> clase text-hero */
+  --text-hero: 56px;
+  --text-hero--line-height: 1;
+  --text-hero--letter-spacing: -0.02em;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-cream text-sm text-black antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold leading-[1.1] tracking-[-0.01em];
+  }
+}

@@ -1,0 +1,48 @@
+import type { Route } from './types'
+
+export const mockRoutes: Route[] = [
+  {
+    id: 'r1',
+    code: 'A',
+    zone: 'Centro',
+    name: 'Mercado Central',
+    collectorName: 'Mario Pérez',
+    clientCount: 12,
+    collectedAmount: 840_000,
+    arrearsCount: 2,
+    color: 'cyan',
+  },
+  {
+    id: 'r2',
+    code: 'B',
+    zone: 'Norte',
+    name: 'Avenida Las Palmas',
+    collectorName: 'Diana Soto',
+    clientCount: 18,
+    collectedAmount: 1_200_000,
+    arrearsCount: 0,
+    color: 'royal',
+  },
+  {
+    id: 'r3',
+    code: 'C',
+    zone: 'Sur',
+    name: 'Barrio La Esperanza',
+    collectorName: 'Hugo Marín',
+    clientCount: 9,
+    collectedAmount: 520_000,
+    arrearsCount: 1,
+    color: 'green',
+  },
+  {
+    id: 'r4',
+    code: 'D',
+    zone: 'Occidente',
+    name: 'Sector industrial',
+    collectorName: null,
+    clientCount: 14,
+    collectedAmount: 960_000,
+    arrearsCount: 4,
+    color: 'mint',
+  },
+]

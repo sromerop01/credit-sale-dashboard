@@ -1,8 +1,8 @@
 import { useState, useCallback, useMemo, useEffect, type ReactNode } from 'react'
 import { AuthContext } from './AuthContext'
-import { authApi } from '../api/auth'
+import { authApi } from '../api'
 import { LoginPayload } from '../types'
-import { getErrorKind } from '../utils/http'
+import { getErrorKind } from '@/lib/http'
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)

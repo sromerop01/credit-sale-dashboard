@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
-import { Button } from '../../components/ui/Button'
-import { Input } from '../../components/ui/Input'
-import { useAuth } from '../../hooks/useAuth'
-import styles from './LoginPage.module.css'
+import { Button } from '@/components/ui/Button'
+import { Input } from '@/components/ui/Input'
+import { useAuth } from '../hooks/useAuth'
 
 export function LoginPage() {
   const navigate = useNavigate()
@@ -37,18 +36,15 @@ export function LoginPage() {
   }
 
   return (
-    <div className={styles.page}>
-      <section className={styles.hero}>
-        <h1 className={styles.title}>
+    <div className="grid flex-1 grid-cols-[1.1fr_1fr] items-start gap-10 px-8 py-10 max-lg:grid-cols-1 max-lg:gap-8 max-sm:gap-6 max-sm:px-5 max-sm:py-6">
+      <section className="flex min-h-[60vh] flex-col justify-between max-lg:min-h-0">
+        <h1 className="m-0 text-[clamp(72px,10vw,168px)] font-bold leading-[0.95] tracking-[-0.03em] text-black">
           Bienvenido de nuevo
         </h1>
-        <a href="#solicitar" className={styles.requestAccess}>
-          Solicitar acceso
-        </a>
       </section>
 
-      <section className={styles.forms}>
-        <form className={styles.formBlock} onSubmit={handleLogin}>
+      <section className="mt-12 flex w-full max-w-[480px] flex-col gap-6 justify-self-end max-lg:mt-0 max-lg:max-w-full max-lg:justify-self-stretch">
+        <form className="flex flex-col gap-3" onSubmit={handleLogin}>
           <Input
             label="Correo"
             type="email"
@@ -65,9 +61,14 @@ export function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {error && <p className={styles.error}>{error}</p>}
-          <div className={styles.row}>
-            <a href="#recover" className={styles.forgot}>
+          {error && (
+            <p className="text-[13px] font-medium text-rust">{error}</p>
+          )}
+          <div className="mt-2 flex items-center justify-between gap-4">
+            <a
+              href="#recover"
+              className="text-[13px] font-bold text-black underline underline-offset-[3px]"
+            >
               ¿Has olvidado tu contraseña?
             </a>
             <Button type="submit" variant="ghost" disabled={loading}>
@@ -76,10 +77,10 @@ export function LoginPage() {
           </div>
         </form>
 
-        <div className={styles.divider} />
+        <div className="my-2 h-px bg-black opacity-60" />
 
-        <form className={styles.formBlock} onSubmit={handleMagicLink}>
-          <p className={styles.magicHint}>
+        <form className="flex flex-col gap-3" onSubmit={handleMagicLink}>
+          <p className="mb-1 text-[13px] text-black">
             O accede con un enlace enviado por correo electrónico
           </p>
           <Input
@@ -90,9 +91,15 @@ export function LoginPage() {
             value={magicEmail}
             onChange={(e) => setMagicEmail(e.target.value)}
           />
-          <Button type="submit" variant="ghost" className={styles.magicBtn}>
+          <Button type="submit" variant="ghost" className="mt-2 self-start">
             Inicia sesión con tu correo electrónico
           </Button>
+          <a
+            href="#solicitar"
+            className="mt-8 inline-block self-start text-xs font-bold uppercase tracking-[0.08em] text-black underline underline-offset-4"
+          >
+            Solicitar acceso
+          </a>
         </form>
       </section>
     </div>

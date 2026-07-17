@@ -1,10 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { AppShell } from './components/layout/AppShell'
-import { AuthShell } from './components/layout/AuthShell'
-import { ProtectedRoute } from './contexts/ProtectedRoute'
-import { RoutesPage } from './pages/RoutesPage'
-import { ClientsPage } from './pages/ClientsPage/ClientsPage'
-import { LoginPage } from './pages/LoginPage/LoginPage'
+import { AppShell } from '@/components/layout/AppShell'
+import { AuthShell } from '@/components/layout/AuthShell'
+import { ProtectedRoute } from '@/features/auth/components/ProtectedRoute'
+import { RoutesPage } from '@/features/routes/pages/RoutesPage'
+import { ClientsPage } from '@/features/clients/pages/ClientsPage'
+import { LoginPage } from '@/features/auth/pages/LoginPage'
 
 export default function App() {
   return (
