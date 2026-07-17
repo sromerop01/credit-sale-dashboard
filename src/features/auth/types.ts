@@ -10,8 +10,3 @@ export interface AuthContextType {
   login: (payload: LoginPayload) => Promise<void>
   logout: () => Promise<void>
 }
-
-export type LoginInputs = {
-  email: string
-  password: string
-}

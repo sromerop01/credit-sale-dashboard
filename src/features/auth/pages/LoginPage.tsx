@@ -3,15 +3,16 @@ import { useNavigate, Navigate } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { useAuth } from '../hooks/useAuth'
-import { LoginInputs } from '../types'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod'
 
 const loginSchema = z.object({
-  email: z.string().email({ message: 'Correo electrónico inválido' }),
+  email: z.email({ message: 'Correo electrónico inválido' }),
   password: z.string().min(8, { message: 'La contraseña debe tener al menos 8 caracteres' }),
 })
+
+type LoginInputs = z.infer<typeof loginSchema>
 
 export function LoginPage() {
   const navigate = useNavigate()
@@ -47,7 +48,7 @@ export function LoginPage() {
 
   const handleMagicLink = (e: React.FormEvent) => {
     e.preventDefault()
-    alert(`Enviaríamos un enlace de acceso a ${magicEmail}`)
+    alert(`Enviamos un enlace de acceso a ${magicEmail}`)
   }
 
   return (

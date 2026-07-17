@@ -1,3 +1,38 @@
+const API_URL = import.meta.env.VITE_API_URL
+
+/**
+ * Cliente HTTP base: JSON + cookies de sesión contra VITE_API_URL.
+ * En error HTTP lanza { response: { data, status } } (ver getErrorKind).
+ */
+export async function request<T = void>(
+  path: string,
+  options: RequestInit = {}
+): Promise<T> {
+  const response = await fetch(`${API_URL}${path}`, {
+    ...options,
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      ...options.headers,
+    },
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => null)
+    throw {
+      response: {
+        data: errorData || { message: 'Error en la solicitud' },
+        status: response.status,
+      },
+    }
+  }
+
+  // Tolera respuestas sin cuerpo (204, logout, etc.)
+  const text = await response.text()
+  return (text ? JSON.parse(text) : undefined) as T
+}
+
 export type ErrorKind = 'client' | 'server' | 'network'
 
 export interface ApiError {
