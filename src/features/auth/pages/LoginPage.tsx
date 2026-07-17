@@ -3,6 +3,7 @@ import { useNavigate, Navigate } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { useAuth } from '../hooks/useAuth'
+import { HOME_PATH } from '@/app/paths'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod'
@@ -31,14 +32,14 @@ export function LoginPage() {
   })
 
   if (isLoading) return null
-  if (isAuthenticated) return <Navigate to="/rutas" replace />
+  if (isAuthenticated) return <Navigate to={HOME_PATH} replace />
 
   const handleLogin = async (data: LoginInputs) => {
     setError(null)
     setLoading(true)
     try {
       await login({ email: data.email, password: data.password })
-      navigate('/rutas', { replace: true })
+      navigate(HOME_PATH, { replace: true })
     } catch {
       setError('Credenciales incorrectas. Verifica tu correo y contraseña.')
     } finally {

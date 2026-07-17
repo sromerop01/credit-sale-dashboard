@@ -37,7 +37,7 @@ const groups: NavGroup[] = [
   {
     label: 'Inicio',
     items: [
-      { to: '/resumen', icon: LayoutDashboard, label: 'Resumen', disabled: true },
+      { to: '/resumen', icon: LayoutDashboard, label: 'Resumen' },
     ],
   },
   {
