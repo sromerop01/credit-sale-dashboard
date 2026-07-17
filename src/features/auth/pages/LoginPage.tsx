@@ -3,25 +3,40 @@ import { useNavigate, Navigate } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { useAuth } from '../hooks/useAuth'
+import { LoginInputs } from '../types'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from 'zod'
+
+const loginSchema = z.object({
+  email: z.string().email({ message: 'Correo electrónico inválido' }),
+  password: z.string().min(8, { message: 'La contraseña debe tener al menos 8 caracteres' }),
+})
 
 export function LoginPage() {
   const navigate = useNavigate()
   const { login, isAuthenticated, isLoading } = useAuth()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [magicEmail, setMagicEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<LoginInputs>({
+    mode: 'onChange',
+    resolver: zodResolver(loginSchema),
+  })
+
   if (isLoading) return null
   if (isAuthenticated) return <Navigate to="/rutas" replace />
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleLogin = async (data: LoginInputs) => {
     setError(null)
     setLoading(true)
     try {
-      await login({ email, password })
+      await login({ email: data.email, password: data.password })
       navigate('/rutas', { replace: true })
     } catch {
       setError('Credenciales incorrectas. Verifica tu correo y contraseña.')
@@ -44,23 +59,25 @@ export function LoginPage() {
       </section>
 
       <section className="mt-12 flex w-full max-w-[480px] flex-col gap-6 justify-self-end max-lg:mt-0 max-lg:max-w-full max-lg:justify-self-stretch">
-        <form className="flex flex-col gap-3" onSubmit={handleLogin}>
+        <form className="flex flex-col gap-3" onSubmit={handleSubmit(handleLogin)}>
           <Input
             label="Correo"
             type="email"
             autoComplete="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register('email')}
           />
+          {errors.email && (
+            <p className="text-[13px] font-medium text-rust">{errors.email.message}</p>
+          )}
           <Input
             label="Contraseña"
             type="password"
             autoComplete="current-password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            {...register('password')}
           />
+          {errors.password && (
+            <p className="text-[13px] font-medium text-rust">{errors.password.message}</p>
+          )}
           {error && (
             <p className="text-[13px] font-medium text-rust">{error}</p>
           )}
@@ -71,7 +88,7 @@ export function LoginPage() {
             >
               ¿Has olvidado tu contraseña?
             </a>
-            <Button type="submit" variant="ghost" disabled={loading}>
+            <Button type="submit" variant="ghost" disabled={loading || !isValid}>
               {loading ? 'Entrando…' : 'Iniciar sesión'}
             </Button>
           </div>
